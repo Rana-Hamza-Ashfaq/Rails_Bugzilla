@@ -1,0 +1,4 @@
+<div class="container-fluid">
+  <% name = current_user.present? ? current_user.user_type : 'Not Signed In'%>
+  <h1>Welcome, <%=name%></h1>
+</div>

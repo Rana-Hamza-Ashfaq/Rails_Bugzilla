@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <% if current_user.user_type == 'Developer'%>
+            <%= link_to 'Bugs',home_list_assigned_bugs_path, class:'nav-link btn btn-outline-secondary btn-sm mr-2' %>
+          <% end %>
+          <%= link_to 'Projects',projects_path, class:'nav-link btn btn-outline-info btn-sm mr-2' %>
+          <%= link_to 'Edit Profile',edit_user_registration_path, class:'nav-link btn btn-outline-warning btn-sm mr-2' %>
+          <%= link_to 'Sign out',destroy_user_session_path, method: :delete, class:'nav-link btn btn-outline-success btn-sm mr-2'%>
+        <% else %>
+          <%= link_to 'Sign In',new_user_session_path, class:'nav-link btn btn-outline-info btn-sm mr-2'%>
+          <%= link_to 'Register',new_user_registration_path, class:'nav-link btn btn-outline-success btn-sm'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>

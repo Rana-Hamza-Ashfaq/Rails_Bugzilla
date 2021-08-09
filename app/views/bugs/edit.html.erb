@@ -1,0 +1,6 @@
+<h1>Editing Bug</h1>
+
+<%= render 'form', bug: @bug %>
+
+<%= link_to 'Show', @bug, class:'btn btn-secondary mt-2' %>
+<%= link_to 'Back', bugs_path(:id => @bug.project_id), class:'btn btn-secondary mt-2' %>

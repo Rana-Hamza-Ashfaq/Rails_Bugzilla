@@ -1,0 +1,41 @@
+<div class="jumbotron">
+  <h1 class="display-5"><%= @bug.title %></h1>
+  <p class="lead"><%= @bug.description %></p>
+  <hr class="my-4">
+  <% if @bug.user_id == current_user.id%>
+    <%= link_to 'Edit', edit_bug_path(@bug, :pid => @bug.project_id), class:'btn btn-dark' %>
+  <% end %>
+  <% if @bug.assign_id == current_user.id %>
+    <%= link_to 'Back', home_list_assigned_bugs_path, class:'btn btn-dark' %>
+  <% else %>
+    <%= link_to 'Back', bugs_path(:id => @bug.project_id), class:'btn btn-dark' %>
+  <%end%>
+  <div class="mt-4 text-center">
+    <% if @bug.image.attached? %>
+      <%= image_tag(@bug.image, style:'width:60%')%>
+    <%end%>
+  </div>
+</div>
+
+<% if current_user.user_type == 'Manager'%>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Who is currently Working on this Bug</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <% if @bug.assign_id.nil? %>
+          <td class="text-center "><%= "No One is Working on it." %></td>
+        <%else%>
+          <% user1 = User.find_by(id: @bug.assign_id)%>
+          <td><h5><%= "#{user1.firstname} is currently working on this Bug."%></h5></td>
+        <%end%>
+
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+

@@ -1,0 +1,59 @@
+
+<% if current_user.user_type == 'QA'%>
+  <h2>Assigned Projects</h2>
+<% end %>
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+    <tr>
+      <th>Title</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% current_user.projects.each do |project| %>
+      <tr>
+        <td><%= project.title %></td>
+        <td><%= project.body %></td>
+        <td><%= link_to 'Show', project, class:"btn btn-outline-success btn-sm" %></td>
+        <% if current_user.user_type == 'Manager'%>
+          <td><%= link_to 'Edit', edit_project_path(project), class:"btn btn-outline-info btn-sm" %></td>
+          <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-outline-danger btn-sm" %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if current_user.user_type == 'QA'%>
+  <br/>
+  <h2>All Projects</h2>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th>Title</th>
+        <th>Body</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% Project.all.each do |project| %>
+        <tr>
+          <td><%= project.title %></td>
+          <td><%= project.body %></td>
+          <td><%= link_to 'Show', project %></td>
+          <% if current_user.user_type == 'Manager'%>
+            <td><%= link_to 'Edit', edit_project_path(project) %></td>
+            <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+<br>
+<% if current_user.user_type == 'Manager'%>
+  <%= link_to 'New Project', new_project_path, class:"btn btn-secondary" %>
+<% end %>

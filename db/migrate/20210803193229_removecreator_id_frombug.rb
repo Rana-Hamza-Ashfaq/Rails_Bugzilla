@@ -1,0 +1,3 @@
+class RemovecreatorIdFrombug < ActiveRecord::Migration[5.2]
+  def change; end
+end
