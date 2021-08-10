@@ -42,7 +42,7 @@ class BugsController < ApplicationController
       end
     end
   rescue
-    redirect_to project_url(@project_id), notice: 'Error: Some constraints are not matching.'
+    redirect_to project_url(:id => @project_id), notice: 'Error: Some constraints are not matching.'
   end
 
   # PATCH/PUT /bugs/1 or /bugs/1.json

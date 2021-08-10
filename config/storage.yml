@@ -32,3 +32,9 @@ local:
 #   service: Mirror
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
+
+cloudinary:
+  service: Cloudinary
+  cloud_name: railsbugzilla
+  api_key: '266796753962696'
+  api_secret: vgNxzIDdaPX0M_kK5YjZcXcaSRw
