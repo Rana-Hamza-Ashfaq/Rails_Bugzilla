@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     resources :bugs
   end
   resources :projects
-
+  resources :userapi
   namespace :api do
     resources :projects
   end
